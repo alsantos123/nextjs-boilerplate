@@ -5,11 +5,23 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "ts": "tsc -noEmit"
   },
   "dependencies": {
+    "aws-sdk": "^2.842.0",
+    "axios": "^0.21.1",
+    "lodash": "^4.17.20",
     "next": "10.0.6",
     "react": "17.0.1",
-    "react-dom": "17.0.1"
+    "react-dom": "17.0.1",
+    "redis": "^3.0.2",
+    "typescript": "^4.1.5"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.168",
+    "@types/node": "^14.14.26",
+    "@types/react": "^17.0.1",
+    "@types/redis": "^2.8.28"
   }
 }
