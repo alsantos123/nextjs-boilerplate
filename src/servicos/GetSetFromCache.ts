@@ -3,23 +3,23 @@ import Redis from "./Redis";
 
 const DEBUG = appConfig.DEBUG;
 
-export default async function GetServerSideAPI<RetornoTipo>(chave: string, fnGetRemote: Promise<RetornoTipo>)
+export default async function GetSetFromCache<RetornoTipo>(chave: string, fnGetRemote: Promise<RetornoTipo>)
 {
     try 
     {
         let retorno: RetornoTipo|null = null; // retorno
         
-        const red = new Redis();
+        const redis = new Redis();
         const key = chave;
 
         try 
         {
-            await red.conectar();
+            await redis.conectar();
             let strCache: string | null = null;
 
-            if (red.ativo) 
+            if (redis.ativo) 
             {
-                strCache = await red.getKey(key);
+                strCache = await redis.getKey(key);
 
                 if (strCache && typeof strCache === "string" && strCache.trim() != "") 
                 {
@@ -39,11 +39,11 @@ export default async function GetServerSideAPI<RetornoTipo>(chave: string, fnGet
 
         try 
         {
-            if (red.ativo) 
+            if (redis.ativo) 
             {
                 DEBUG && console.log("> cache :: salvando");
 
-                await red.setKey(key, JSON.stringify(retorno));
+                await redis.setKey(key, JSON.stringify(retorno));
 
             }
         }

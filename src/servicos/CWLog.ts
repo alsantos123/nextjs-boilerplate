@@ -92,7 +92,7 @@ export default class CWLog
         catch(e)
         {
             // DEBUG && console.error(">>> CWLogs._setup()")
-            // DEBUG && console.error(e);
+            // DEBUG && console.error(this._inspect(e));
             // DEBUG && console.error(">>>");
 
             return false;
@@ -146,13 +146,13 @@ export default class CWLog
 				catch(e2){ console.error("erro no putLogEvents_2(): ", e2); throw(e2) };
 			}
 
-			console.error("erro no putLogEvents(): ",  JSON.stringify(e));
+			console.error("erro no putLogEvents(): ",  this._inspect(e));
 			// throw(e);
 		}
     }
 
     private _inspect(msg: any) : string
     {
-        return util.inspect(msg, true, 4, false);
+        return util.inspect(msg, true, 4, true);
     }
 }
